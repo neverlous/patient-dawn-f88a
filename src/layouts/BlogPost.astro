@@ -14,69 +14,102 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+			.blog-post-layout main {
+				/* Main already styled globally, these are overrides or specific additions */
+				padding-top: 1.5em; /* Less padding than generic main, header takes space */
 			}
 			.hero-image {
 				width: 100%;
+				margin-bottom: 2em;
+				max-height: 450px; /* Control hero image height */
+				overflow: hidden; /* Ensure image respects container bounds */
+				border-radius: 12px; /* Rounded corners for the hero image container */
+				box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 			}
 			.hero-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* Cover the area, might crop */
 				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				border-radius: 12px; /* Match container */
 			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+			.article-header {
 				text-align: center;
-				line-height: 1;
+				margin-bottom: 2.5em;
+				padding: 1em 0;
+				border-bottom: 1px solid var(--border-color);
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
+			.article-header .title-text {
+				font-family: var(--font-heading);
+				font-size: clamp(2.2em, 5vw, 3.2em); /* Responsive title */
+				color: var(--text-primary);
+				line-height: 1.2;
+				margin: 0.2em 0 0.4em;
+				/* Applying text-glow utility class from global.css */
 			}
-			.date {
+			.date-info {
+				font-family: var(--font-sans);
+				font-size: 0.9em;
+				color: var(--text-secondary);
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
 			}
 			.last-updated-on {
 				font-style: italic;
+				font-size: 0.9em;
+				display: block; /* Ensure it's on its own line if needed */
+				margin-top: 0.3em;
+			}
+
+			.prose-content {
+				/* .prose class is already styled in global.css for typography */
+				/* This class is for layout within the blog post */
+				padding-bottom: 2em; /* Space before footer */
+			}
+
+			/* Responsive adjustments for smaller screens */
+			@media (max-width: 768px) {
+				.hero-image {
+					max-height: 300px;
+					border-radius: 8px;
+				}
+				.hero-image img {
+					border-radius: 8px;
+				}
+				.article-header .title-text {
+					font-size: clamp(1.8em, 6vw, 2.5em);
+				}
+				.prose-content {
+					/* global.css already handles .prose width and padding adjustments */
+				}
 			}
 		</style>
 	</head>
 
-	<body>
+	<body class="blog-post-layout">
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+			<article style="animation: slideUpFadeIn 0.6s ease-out 0.1s forwards; opacity: 0;">
+				{heroImage && (
+					<div class="hero-image">
+						<img width={1200} height={600} src={heroImage} alt={`Hero image for ${title}`} />
 					</div>
-					<slot />
+				)}
+				<div class="article-header">
+					<div class="date-info">
+						Published: <FormattedDate date={pubDate} />
+						{updatedDate && (
+							<span class="last-updated-on">
+								Last updated: <FormattedDate date={updatedDate} />
+							</span>
+						)}
+					</div>
+					<h1 class="title-text text-glow">{title}</h1>
+				</div>
+
+				<div class="prose prose-content">
+					<slot /> {/* Markdown/MDX content will be rendered here */}
 				</div>
 			</article>
 		</main>
