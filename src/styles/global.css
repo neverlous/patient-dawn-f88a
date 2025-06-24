@@ -5,6 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
 
 :root {
+  /* Light Theme Palette */
+  --bg-secondary: #ffffff; /* Pure white for cards/sections if needed */
+
+
+  --accent-primary-darker: #0056b3; /* Darker shade for hovers or specific elements */
+
+
   --bg-primary: #0f172a; /* Dark Blue/Gray */
   --accent-primary: #00ffff; /* Cyan */
   --accent-secondary: #4cc9f0; /* Lighter Cyan/Blue */
@@ -14,13 +21,13 @@
   --code-bg: #1e293b; /* Darker background for code blocks */
   --link-hover: #99ffff; /* Lighter cyan for link hover */
 
+
   --font-sans: "Atkinson", sans-serif;
   --font-heading: "Rajdhani", sans-serif;
 
-  --box-shadow-glow: 0 0 15px rgba(var(--accent-primary-rgb, 0, 255, 255), 0.5),
-                     0 0 5px rgba(var(--accent-primary-rgb, 0, 255, 255), 0.3);
-  /* Define RGB versions for RGBA usage if needed, or use hex with alpha if browser support is sufficient */
-  --accent-primary-rgb: 0, 255, 255;
+  --box-shadow-glow: 0 0 12px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.3),
+                     0 0 4px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.2);
+  --accent-primary-rgb: 0, 123, 255; /* RGB for the new accent-primary */
 }
 
 @font-face {
@@ -175,6 +182,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5em;
+
 }
 
 th, td {
@@ -182,6 +190,7 @@ th, td {
   padding: 0.75em;
   border-bottom: 1px solid var(--border-color);
 }
+
 
 th {
   color: var(--accent-secondary);
