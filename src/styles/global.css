@@ -1,21 +1,35 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  Futuristic Tech Minimalism Styles
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
 
 :root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
-  --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow:
-    0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-    0 16px 32px rgba(var(--gray), 33%);
+  /* Light Theme Palette */
+  --bg-primary: #f8f9fa; /* Very light gray / Off-white */
+  --bg-secondary: #ffffff; /* Pure white for cards/sections if needed */
+
+  --text-primary: #212529; /* Very dark gray / Near black for main text */
+  --text-secondary: #495057; /* Dark gray for less important text */
+
+  --accent-primary: #007bff; /* A strong blue as primary accent */
+  --accent-primary-darker: #0056b3; /* Darker shade for hovers or specific elements */
+  --accent-secondary: #17a2b8; /* A teal/cyan as secondary accent */
+
+  --border-color: #dee2e6; /* Light gray for borders */
+  --code-bg: #e9ecef; /* Slightly darker light gray for code blocks */
+
+  --link-hover: var(--accent-primary-darker); /* Darker blue for link hover */
+
+  --font-sans: "Atkinson", sans-serif;
+  --font-heading: "Rajdhani", sans-serif;
+
+  /* Adjusted glow for light theme - might need to be more subtle or use a darker accent */
+  --box-shadow-glow: 0 0 12px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.3),
+                     0 0 4px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.2);
+  --accent-primary-rgb: 0, 123, 255; /* RGB for the new accent-primary */
 }
+
 @font-face {
   font-family: "Atkinson";
   src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -30,110 +44,268 @@
   font-style: normal;
   font-display: swap;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
-  font-family: "Atkinson", sans-serif;
+  font-family: var(--font-sans);
+  animation: fadeIn 0.5s ease-in-out;
   margin: 0;
   padding: 0;
   text-align: left;
-  background: linear-gradient(var(--gray-gradient)) no-repeat;
-  background-size: 100% 600px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 18px; /* Adjusted for better readability on dark bg */
+  line-height: 1.7;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  color: rgb(var(--gray-dark));
-  font-size: 20px;
-  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 main {
-  width: 720px;
+  width: 800px; /* Slightly wider for a more modern feel */
   max-width: calc(100% - 2em);
   margin: auto;
-  padding: 3em 1em;
+  padding: 2em 1em; /* Adjusted padding */
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
-  color: rgb(var(--black));
-  line-height: 1.2;
+  font-family: var(--font-heading);
+  margin: 1.5em 0 0.75em 0;
+  color: var(--text-primary);
+  line-height: 1.3;
+  font-weight: 600; /* Rajdhani looks good a bit bolder */
 }
-h1 {
-  font-size: 3.052em;
-}
-h2 {
-  font-size: 2.441em;
-}
-h3 {
-  font-size: 1.953em;
-}
-h4 {
-  font-size: 1.563em;
-}
-h5 {
-  font-size: 1.25em;
-}
+
+h1 { font-size: 2.8em; letter-spacing: 1px; } /* Adjusted sizes */
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.8em; }
+h4 { font-size: 1.5em; }
+h5 { font-size: 1.25em; }
+
 strong,
 b {
   font-weight: 700;
+  color: var(--accent-secondary); /* Add a touch of accent */
 }
+
 a {
-  color: var(--accent);
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-a:hover {
-  color: var(--accent);
+
+a:hover, a:focus {
+  color: var(--link-hover);
+  text-shadow: 0 0 8px rgba(var(--accent-primary-rgb), 0.7);
 }
+
 p {
-  margin-bottom: 1em;
+  margin-bottom: 1.25em;
 }
+
+/* .prose is used in BlogPost.astro, so let's style it */
+.prose {
+  width: 720px; /* Keep prose readable */
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 1em;
+  color: var(--text-primary); /* Ensure prose text is also updated */
+}
+
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
-textarea {
+
+.prose a {
+  /* Specific styling for links within prose if needed, e.g., slightly different hover */
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--accent-primary-rgb), 0.5);
+}
+
+.prose a:hover, .prose a:focus {
+  text-decoration-color: var(--link-hover);
+}
+
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"] {
   width: 100%;
   font-size: 16px;
+  padding: 0.5em 0.75em;
+  background-color: var(--code-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-input {
-  font-size: 16px;
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 5px rgba(var(--accent-primary-rgb), 0.5);
 }
+
+
 table {
   width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
 }
+
+th, td {
+  text-align: left;
+  padding: 0.75em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  color: var(--accent-secondary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  /* Consider adding a subtle border or shadow if images look stark on dark bg */
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.3); */
 }
+
 code {
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
+  padding: 0.2em 0.4em;
+  background-color: var(--code-bg);
+  color: var(--accent-secondary); /* Make inline code stand out */
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
+
 pre {
   padding: 1.5em;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
+
 pre > code {
-  all: unset;
+  all: unset; /* Reset Astro's default for pre > code */
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: var(--text-primary); /* Regular text color for code blocks for readability */
+  line-height: 1.5;
 }
+
+/* Syntax Highlighting (Astro/Prism) might need theme adjustments.
+   This is a generic placeholder. If Prism.js is used, a dark theme for it would be ideal.
+   Example: Invert light theme colors or use a pre-built dark Prism theme. */
+pre code .token.comment,
+pre code .token.prolog,
+pre code .token.doctype,
+pre code .token.cdata {
+  color: #6a9955; /* Example: Green for comments */
+}
+pre code .token.punctuation {
+  color: var(--text-secondary);
+}
+pre code .token.property,
+pre code .token.tag,
+pre code .token.boolean,
+pre code .token.number,
+pre code .token.constant,
+pre code .token.symbol {
+  color: #569cd6; /* Example: Blue for properties, numbers */
+}
+pre code .token.selector,
+pre code .token.attr-name,
+pre code .token.string,
+pre code .token.char,
+pre code .token.builtin,
+pre code .token.inserted {
+  color: #ce9178; /* Example: Orange for strings */
+}
+pre code .token.operator,
+pre code .token.entity,
+pre code .token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #d4d4d4; /* Lighter color for operators */
+}
+pre code .token.atrule,
+pre code .token.attr-value,
+pre code .token.keyword {
+  color: #c586c0; /* Example: Purple for keywords */
+}
+pre code .token.function,
+pre code .token.class-name {
+  color: #dcdcaa; /* Example: Yellow for functions */
+}
+pre code .token.regex,
+pre code .token.important,
+pre code .token.variable {
+  color: #9cdcfe;
+}
+
+
 blockquote {
-  border-left: 4px solid var(--accent);
-  padding: 0 0 0 20px;
-  margin: 0px;
-  font-size: 1.333em;
+  border-left: 3px solid var(--accent-primary);
+  padding: 0.5em 1.5em;
+  margin: 1.5em 0;
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--text-secondary);
+  background-color: rgba(var(--accent-primary-rgb), 0.05); /* Subtle background tint */
 }
+
 hr {
   border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+  border-top: 1px solid var(--border-color);
+  margin: 2em 0;
 }
-@media (max-width: 720px) {
+
+@media (max-width: 820px) { /* Adjusted breakpoint for new main width */
   body {
-    font-size: 18px;
+    font-size: 17px;
   }
   main {
-    padding: 1em;
+    padding: 1.5em 0.75em;
   }
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.6em; }
 }
 
 .sr-only {
@@ -144,12 +316,14 @@ hr {
   height: 1px;
   width: 1px;
   overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
   clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
   clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
   clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
+}
+
+/* Utility class for subtle text glow - can be applied to headers or important text */
+.text-glow {
+  text-shadow: 0 0 8px rgba(var(--accent-primary-rgb), 0.6),
+               0 0 12px rgba(var(--accent-primary-rgb), 0.4);
 }
