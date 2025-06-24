@@ -6,24 +6,26 @@
 
 :root {
   /* Light Theme Palette */
+  --bg-primary: #f8f9fa; /* Very light gray / Off-white */
   --bg-secondary: #ffffff; /* Pure white for cards/sections if needed */
 
+  --text-primary: #212529; /* Very dark gray / Near black for main text */
+  --text-secondary: #495057; /* Dark gray for less important text */
 
+  --accent-primary: #007bff; /* A strong blue as primary accent */
   --accent-primary-darker: #0056b3; /* Darker shade for hovers or specific elements */
+  --accent-secondary: #17a2b8; /* A teal/cyan as secondary accent */
 
+  --border-color: #dee2e6; /* Light gray for borders */
+  --code-bg: #e9ecef; /* Slightly darker light gray for code blocks */
 
-  --bg-primary: #0f172a; /* Dark Blue/Gray */
-  --accent-primary: #00ffff; /* Cyan */
-  --accent-secondary: #4cc9f0; /* Lighter Cyan/Blue */
-  --text-primary: #e0e0e0; /* Off-white */
-  --text-secondary: #a0a0a0; /* Light Gray */
-  --border-color: #334155; /* Muted Blue/Gray for borders */
-  --code-bg: #1e293b; /* Darker background for code blocks */
-  --link-hover: #99ffff; /* Lighter cyan for link hover */
+  --link-hover: var(--accent-primary-darker); /* Darker blue for link hover */
 
 
   --font-sans: "Atkinson", sans-serif;
   --font-heading: "Rajdhani", sans-serif;
+
+  /* Adjusted glow for light theme - might need to be more subtle or use a darker accent */
 
   --box-shadow-glow: 0 0 12px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.3),
                      0 0 4px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.2);
@@ -182,7 +184,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5em;
-
 }
 
 th, td {
@@ -234,22 +235,25 @@ pre > code {
 /* Syntax Highlighting (Astro/Prism) might need theme adjustments.
    This is a generic placeholder. If Prism.js is used, a dark theme for it would be ideal.
    Example: Invert light theme colors or use a pre-built dark Prism theme. */
+/* Light Theme Syntax Highlighting for Prism.js */
+/* Based on a typical light theme like Prism Default or a VS Code light theme */
 pre code .token.comment,
 pre code .token.prolog,
 pre code .token.doctype,
 pre code .token.cdata {
-  color: #6a9955; /* Example: Green for comments */
+  color: #6a737d; /* Grayish for comments */
 }
 pre code .token.punctuation {
-  color: var(--text-secondary);
+  color: #5c6370; /* Darker gray for punctuation */
 }
 pre code .token.property,
 pre code .token.tag,
 pre code .token.boolean,
 pre code .token.number,
 pre code .token.constant,
-pre code .token.symbol {
-  color: #569cd6; /* Example: Blue for properties, numbers */
+pre code .token.symbol,
+pre code .token.deleted {
+  color: #e45649; /* Reddish/Orange for these tokens */
 }
 pre code .token.selector,
 pre code .token.attr-name,
@@ -257,29 +261,35 @@ pre code .token.string,
 pre code .token.char,
 pre code .token.builtin,
 pre code .token.inserted {
-  color: #ce9178; /* Example: Orange for strings */
+  color: #50a14f; /* Green for strings, selectors */
 }
 pre code .token.operator,
 pre code .token.entity,
 pre code .token.url,
 .language-css .token.string,
-.style .token.string {
-  color: #d4d4d4; /* Lighter color for operators */
+.style .token.string,
+pre code .token.variable {
+  color: #a626a4; /* Purple for variables, operators */
 }
 pre code .token.atrule,
 pre code .token.attr-value,
 pre code .token.keyword {
-  color: #c586c0; /* Example: Purple for keywords */
+  color: #0184bc; /* Blue for keywords */
 }
 pre code .token.function,
 pre code .token.class-name {
-  color: #dcdcaa; /* Example: Yellow for functions */
+  color: #c18401; /* Yellow/Brown for functions/classes */
 }
 pre code .token.regex,
-pre code .token.important,
-pre code .token.variable {
-  color: #9cdcfe;
+pre code .token.important {
+  color: #d19a66; /* Orange for regex, important */
 }
+
+/* Ensure plain text in code blocks is also using the primary text color */
+pre > code {
+  color: var(--text-primary);
+}
+
 
 
 blockquote {
