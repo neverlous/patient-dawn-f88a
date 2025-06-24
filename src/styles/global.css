@@ -6,25 +6,25 @@
 
 :root {
   /* Light Theme Palette */
-  --bg-primary: #f8f9fa; /* Very light gray / Off-white */
   --bg-secondary: #ffffff; /* Pure white for cards/sections if needed */
 
-  --text-primary: #212529; /* Very dark gray / Near black for main text */
-  --text-secondary: #495057; /* Dark gray for less important text */
 
-  --accent-primary: #007bff; /* A strong blue as primary accent */
   --accent-primary-darker: #0056b3; /* Darker shade for hovers or specific elements */
-  --accent-secondary: #17a2b8; /* A teal/cyan as secondary accent */
 
-  --border-color: #dee2e6; /* Light gray for borders */
-  --code-bg: #e9ecef; /* Slightly darker light gray for code blocks */
 
-  --link-hover: var(--accent-primary-darker); /* Darker blue for link hover */
+  --bg-primary: #0f172a; /* Dark Blue/Gray */
+  --accent-primary: #00ffff; /* Cyan */
+  --accent-secondary: #4cc9f0; /* Lighter Cyan/Blue */
+  --text-primary: #e0e0e0; /* Off-white */
+  --text-secondary: #a0a0a0; /* Light Gray */
+  --border-color: #334155; /* Muted Blue/Gray for borders */
+  --code-bg: #1e293b; /* Darker background for code blocks */
+  --link-hover: #99ffff; /* Lighter cyan for link hover */
+
 
   --font-sans: "Atkinson", sans-serif;
   --font-heading: "Rajdhani", sans-serif;
 
-  /* Adjusted glow for light theme - might need to be more subtle or use a darker accent */
   --box-shadow-glow: 0 0 12px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.3),
                      0 0 4px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.2);
   --accent-primary-rgb: 0, 123, 255; /* RGB for the new accent-primary */
@@ -182,6 +182,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5em;
+
 }
 
 th, td {
@@ -189,6 +190,7 @@ th, td {
   padding: 0.75em;
   border-bottom: 1px solid var(--border-color);
 }
+
 
 th {
   color: var(--accent-secondary);
