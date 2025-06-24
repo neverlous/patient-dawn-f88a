@@ -21,10 +21,12 @@
 
   --link-hover: var(--accent-primary-darker); /* Darker blue for link hover */
 
+
   --font-sans: "Atkinson", sans-serif;
   --font-heading: "Rajdhani", sans-serif;
 
   /* Adjusted glow for light theme - might need to be more subtle or use a darker accent */
+
   --box-shadow-glow: 0 0 12px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.3),
                      0 0 4px rgba(var(--accent-primary-rgb, 0, 123, 255), 0.2);
   --accent-primary-rgb: 0, 123, 255; /* RGB for the new accent-primary */
@@ -190,6 +192,7 @@ th, td {
   border-bottom: 1px solid var(--border-color);
 }
 
+
 th {
   color: var(--accent-secondary);
   font-family: var(--font-heading);
@@ -286,6 +289,7 @@ pre code .token.important {
 pre > code {
   color: var(--text-primary);
 }
+
 
 
 blockquote {
